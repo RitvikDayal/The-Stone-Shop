@@ -1,0 +1,77 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="main">
+     
+    <style>
+        .errorlist{
+        color: red;
+        }
+        .error input, .error select {
+            border: 2px red solid;
+        }
+    </style>     
+     <!-- Sign up form -->
+        <section class="signup">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form" action="">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name"><i class="fa fa-user-circle" aria-hidden="true"></i></label>
+                                {{ form.username }}
+                                <p  style="font-size: 12px;color: #f54242!important;">
+                                 {{ form.username.errors }}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i></label>
+                                {{ form.email }}
+                                <p  style="font-size: 12px;color: #f54242!important;">
+                                 {{ form.email.errors }}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="fa fa-key" aria-hidden="true"></i></label>
+                                {{ form.password1 }}
+                                <p  style="font-size: 12px;color: #f54242!important;">
+                                 {{ form.password1.errors }}
+                                </p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="re-pass"><i class="fa fa-key" aria-hidden="true"></i></label>
+                                {{ form.password2 }}
+                                <p  style="font-size: 12px; color: #f54242!important;">
+                                 {{ form.password2.errors }}
+                                </p>
+                            </div>
+                            <!--div class="form-group">
+                                
+                            </div-->
+                            <div class="form-group form-button">
+                                <button class="form-submit" id="signup" type="submit">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{% static 'users/img/signup_image.jpg' %}" alt="sing up image"></figure>
+                        <small class="text-muted">
+                        I am already member <a href="{% url 'login' %}" class="signup-image-link">Sign In</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock content %}
