@@ -1,25 +1,5 @@
 # The Stone Shop
 
-<style>
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 1px 1px;
-  grid-template-areas: "home shop cart" "side-cart checkout .";
-}
-
-.home { grid-area: home; }
-
-.shop { grid-area: shop; }
-
-.cart { grid-area: cart; }
-
-.side-cart { grid-area: side-cart; }
-
-.checkout { grid-area: checkout; }
-</style>
-
 <p style="text-align:center; font-size:16px;">
 <b>A Django Ecommerce web app to sell stone products.</b>
 </p>
@@ -46,16 +26,17 @@ Images used are copyright freee, royalty free images from pexels.com and manyt o
 
 ## Enjoy Some ScreenShots
 ---
-<div class="grid-container">
 
-<div class="home">![](screenshots/home-1.png)</div>
+![](screenshots/home-1.png)
 
-<div class="shop">![](screenshots/shop.png)</div>
 
-<div class="cart">![](screenshots/cart.png)</div>
+![](screenshots/shop.png)
 
-<div class="side-cart">![](screenshots/side-cart.png)</div>
 
-<div class="checkout">![](screenshots/checkout.png)</div>
+![](screenshots/cart.png)
 
-</div>
+
+![](screenshots/side-cart.png)
+
+
+![](screenshots/checkout.png)
