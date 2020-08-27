@@ -52,6 +52,7 @@
                                 <input type="email" class="form-control" name="email" id="email" placeholder="">
                                 <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
                             </div>
+
                             <div class="mb-3">
                                 <label for="address">Address *</label>
                                 <input type="text" class="form-control" id="address" name="address" placeholder="" required>
@@ -216,7 +217,7 @@
         })
 
         if(shipping == 'False'){
-            document.getElementById('checkout-address').innerHTML = '<h2>The items are digital, No Billing Address Required</h2><br><h1>Thankyou for shopping @ The Stone Shop</h1>'
+            document.getElementById('checkout-address').innerHTML = '<h2>Items in Cart Do Not Require A Billing Address</h2><br><h1>Thankyou for shopping @ The Stone Shop</h1>'
         }
 
         document.getElementById('make-payment').addEventListener('click', function(e){
@@ -266,7 +267,7 @@
                     'content-Type':'application/json',
                     'X-CSRFToken':csrftoken,
                 },
-                body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo})
+                body:JSON.stringify({'user':userFormData, 'shipping':shippingInfo})
             })
 
             .then((response) => response.json())

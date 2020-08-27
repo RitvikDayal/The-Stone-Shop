@@ -4,6 +4,9 @@ from django import forms
 
 class Customer(models.Model):
     customer = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    fname = models.CharField(max_length=100, default="Jhon")
+    lname = models.CharField(max_length=100, default="Doe")
+    email = models.EmailField(max_length=100, default="example@gmail.com")
 
     def __str__(self):
         return self.customer.username

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
 import datetime
@@ -60,6 +61,7 @@ def cart(request):
     }
     return render(request, 'shop/cart.html', context=context)
 
+@login_required
 # Checkout tss/checkout
 def checkout(request):
     data = cartData(request)
@@ -107,9 +109,14 @@ def processOrder(request):
     data = json.loads(request.body)
 
     if request.user.is_authenticated:
+        # Creating Customer
         customer = request.user.customer
+        customer.fname = data['user']['firstName']
+        customer.lname = data['user']['lastName']
+        customer.email = data['user']['email']
+
         order, created = Order.objects.get_or_create(customer=customer, complete = False)
-        total = float(data['form']['total'])
+        total = float(data['user']['total'])
         order.transaction_id = transaction_id
 
         if total == order.get_cart_total:
@@ -127,6 +134,6 @@ def processOrder(request):
                 zipcode=data['shipping']['zip'],
             )
     else:
-        print('User not Logged in....')
+        return redirect('login')
 
     return JsonResponse('Payment Complete', safe=False)
